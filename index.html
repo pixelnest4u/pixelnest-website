@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixelNest | Fashion Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {font-family: 'Poppins', sans-serif; margin:0; background:#fafafa;}
+header {background:linear-gradient(90deg,#111,#333); color:white; padding:20px; text-align:center; font-size:26px; letter-spacing:2px;}
+
+.nav {display:flex; justify-content:center; gap:15px; padding:12px; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+.nav button {padding:8px 16px; border:none; background:#eee; cursor:pointer; border-radius:20px; font-weight:500;}
+.nav button:hover {background:#111; color:#fff;}
+
+.container {padding:25px; display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:20px;}
+.product {background:white; padding:15px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.08); text-align:center; transition:0.3s;}
+.product:hover {transform:translateY(-5px);}
+.product img {width:100%; border-radius:12px;}
+.product h3 {font-size:16px; margin:10px 0;}
+
+.btn {display:inline-block; margin-top:10px; padding:10px 15px; background:#111; color:white; text-decoration:none; border-radius:25px; font-size:14px;}
+.btn:hover {background:#444;}
+
+.footer {text-align:center; padding:20px; background:#111; color:white; margin-top:20px;}
+.footer a {color:#fff; text-decoration:none;}
+.footer a:hover {text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header>PixelNest ✨ Fashion Picks</header>
+
+<div class="nav">
+<button onclick="filterProducts('all')">All</button>
+<button onclick="filterProducts('tops')">Tops</button>
+<button onclick="filterProducts('bottoms')">Bottoms</button>
+<button onclick="filterProducts('sets')">Co-Ord Sets</button>
+</div>
+
+<div class="container" id="productContainer"></div>
+
+<div class="footer">
+<p>📧 Contact: <a href="mailto:work.pixelnest@gmail.com">work.pixelnest@gmail.com</a></p>
+<p>📌 Pinterest: <a href="https://www.pinterest.com/pixelnest4u" target="_blank">pixelnest4u</a></p>
+<p>© 2026 PixelNest | Amazon Affiliate Store</p>
+</div>
+
+<script>
+const products = [
+ {name:"Denim Shorts", category:"bottoms", img:"https://m.media-amazon.com/images/I/71SOeSh95xL.jpg", link:"https://amzn.to/4tbZKyV"},
+ {name:"Casual Crop Top", category:"tops", img:"https://m.media-amazon.com/images/I/61Xy2fR3KCL._SY741_.jpg", link:"#"},
+ {name:"Summer Dress", category:"tops", img:"https://m.media-amazon.com/images/I/61hURtmkpHL.jpg", link:"https://amzn.to/4bKpzPy"},
+ {name:"Women Fashion Sneakers", category:"bottoms", img:"https://m.media-amazon.com/images/I/71cQ7lY6U-L._SY741_.jpg", link:"#"},
+ {name:"Stylish Mini Handbag", category:"tops", img:"https://m.media-amazon.com/images/I/71pWzhdJNGL._SY741_.jpg", link:"#"},
+ {name:"Trendy Sunglasses", category:"tops", img:"https://m.media-amazon.com/images/I/61z7LzG7FBL._SY741_.jpg", link:"#"},
+ {name:"Heel Sandals", category:"bottoms", img:"https://m.media-amazon.com/images/I/71w7F6R4mHL._SY741_.jpg", link:"#"},
+ {name:"Slim Fit Jeans", category:"bottoms", img:"https://m.media-amazon.com/images/I/71VtY6+K5hL._SY741_.jpg", link:"#"},
+ {name:"Denim Jacket Women", category:"tops", img:"https://m.media-amazon.com/images/I/71XwWZkF1ZL._SY741_.jpg", link:"#"},
+ {name:"Stylish Co-Ord Set", category:"sets", img:"https://m.media-amazon.com/images/I/61INVCO9YeL.jpg", link:"https://amzn.to/4bz93mG"},
+ {name:"Night Suit Set", category:"sets", img:"https://m.media-amazon.com/images/I/61n8q9kQhYL._SY741_.jpg", link:"#"},
+ {name:"Aesthetic Oversized T-Shirt", category:"tops", img:"https://m.media-amazon.com/images/I/71bZ8wQzFSL._SY741_.jpg", link:"#"},
+ {name:"Polo t-shirt", category:"tops", img:"https://m.media-amazon.com/images/I/71xZViTTilL.jpg", link:"https://amzn.to/3O7Qugi"},
+ {name:"Polo jeans", category:"tops", img:"https://m.media-amazon.com/images/I/61xrySAWfpL._SX569_.jpg", link:"https://amzn.to/4bWZddb"}
+];
+
+const container = document.getElementById("productContainer");
+
+function displayProducts(list) {
+  container.innerHTML = "";
+  list.forEach(p => {
+    container.innerHTML += `
+    <div class="product">
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <a href="${p.link}" class="btn">Buy on Amazon</a>
+    </div>`;
+  });
+}
+
+function filterProducts(category) {
+  if(category === 'all') {
+    displayProducts(products);
+  } else {
+    const filtered = products.filter(p => p.category === category);
+    displayProducts(filtered);
+  }
+}
+
+displayProducts(products);
+</script>
+
+</body>
+</html>
